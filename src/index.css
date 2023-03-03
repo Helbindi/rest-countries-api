@@ -10,9 +10,11 @@
 
   --dark-mode-elements: hsl(209, 23%, 22%);
   --dark-mode-bg: hsl(207, 26%, 17%);
+
   --light-mode-txt: hsl(200, 15%, 8%);
   --light-mode-inputs: hsl(0, 0%, 52%);
   --light-mode-bg: hsl(0, 0%, 98%);
+
   --white-clr: hsl(0, 0%, 100%);
 
   --font-detailed: 16px;
@@ -21,8 +23,71 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+.light-mode {
+  color: var(--light-mode-txt);
+  background-color: var(--light-mode-bg);
+}
+
+.dark-mode {
+  color: var(--white-clr);
+  background-color: var(--dark-mode-bg);
+}
+
+/* Main CSS */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1em;
+}
+
+.countries-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+
+/* Simple CSS */
+.country-simple {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1em;
+  padding: 0 1em 1em 1em;
+
+  min-width: 320px;
+}
+
+.country-flag {
+  width: 100%;
+  height: 200px;
+}
+.country-flag img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    display: flex;
+    justify-content: center;
+  }
+  .main-container {
+    width: 100vh;
+    max-width: 1200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .countries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
