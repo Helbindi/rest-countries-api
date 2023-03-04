@@ -34,8 +34,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/Helbindi/rest-countries-api]()
-- Live Site URL: [https://helbindi-rest-countries-api.vercel.app/]()
+- Solution URL: [https://github.com/Helbindi/rest-countries-api](https://github.com/Helbindi/rest-countries-api)
+- Live Site URL: [https://helbindi-rest-countries-api.vercel.app/](https://helbindi-rest-countries-api.vercel.app/)
 
 ## My process
 
@@ -55,8 +55,8 @@ The main learning goal of this project was retrieving and manage the data acquir
 
 - For this project, I used axios to handle data retrieval from the API and stored the response in a useState. All data shown on the screen will be derived from this useState, that way the user wont be making multiple API calls whenever they want to swap Counties.
 - This project also required usage of Array methods such as Array.filter() to perform the filtering/query of the data.
-- The data recieved from the API can be missing some values such as currencies and native name for smaller countries. For example, [https://restcountries.com/v3.1/name/Antarctica]()
-  ![1677915513241](image/README/1677915513241.png)
+- The data recieved from the API can be missing some values such as currencies and native name for smaller countries. For example: [Antartica]([https://restcountries.com/v3.1/name/Antarctica)
+- ![1677915513241](image/README/1677915513241.png)
 
 ## Author
 
