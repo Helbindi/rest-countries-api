@@ -18,12 +18,12 @@ function App() {
   async function fetchAPI(url) {
     const response = await axios.get(url);
     const sorted = response.data.sort((a, b) => {
-      const nameA = a.name.common.toLowerCase();
-      const nameB = b.name.common.toLowerCase();
-      if (nameA < nameB) {
+      const popA = a.population;
+      const popB = b.population;
+      if (popA > popB) {
         return -1;
       }
-      if (nameA > nameB) {
+      if (popA < popB) {
         return 1;
       }
 

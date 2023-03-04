@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 
 function DetailedCountry({ country, changeSelected, theme }) {
+  // Possible for the country data to be missing data being used.
+  // Example: https://restcountries.com/v3.1/name/Antarctica
+
   const flag = country.flags?.png ? (
     <img src={country.flags?.png} alt={country.flags?.alt} />
   ) : (
@@ -15,7 +18,7 @@ function DetailedCountry({ country, changeSelected, theme }) {
           return ", " + curr.name;
         }
       })
-    : "no data";
+    : "No Data Available";
 
   const langList = country.languages
     ? Object.values(country.languages).map((name, idx) => {
@@ -25,7 +28,7 @@ function DetailedCountry({ country, changeSelected, theme }) {
           return ", " + name;
         }
       })
-    : "no data";
+    : "No Data Available";
 
   const borders = country.borders ? (
     country.borders?.map((b) => (
@@ -43,7 +46,7 @@ function DetailedCountry({ country, changeSelected, theme }) {
     country.name.nativeName && Object.values(country.name.nativeName);
   const native = nativeNames
     ? nativeNames[nativeNames.length - 1].common
-    : "no data";
+    : "No Data Available";
 
   function handleBack(e) {
     e.preventDefault();
@@ -67,7 +70,9 @@ function DetailedCountry({ country, changeSelected, theme }) {
       <section className="detailed-country">
         {flag}
         <section className="detailed-info">
-          <h1>{country.name.common ? country.name.common : "no data"}</h1>
+          <h1>
+            {country.name.common ? country.name.common : "No Data Available"}
+          </h1>
           <p>
             <strong>Native Name: </strong>
             {native}
@@ -76,24 +81,24 @@ function DetailedCountry({ country, changeSelected, theme }) {
             <strong>Populaton: </strong>
             {country.population
               ? country.population.toLocaleString()
-              : "no data"}
+              : "No Data Available"}
           </p>
           <p>
             <strong>Region: </strong>
-            {country.region ? country.region : "no data"}
+            {country.region ? country.region : "No Data Available"}
           </p>
           <p>
             <strong>Subregion: </strong>
-            {country.subregion ? country.subregion : "no data"}
+            {country.subregion ? country.subregion : "No Data Available"}
           </p>
           <p>
             <strong>Capital: </strong>
-            {country.capital ? country.capital : "no data"}
+            {country.capital ? country.capital : "No Data Available"}
           </p>
 
           <p>
             <strong>Top Level Domain: </strong>
-            {country.tld ? country.tld[0] : "no data"}
+            {country.tld ? country.tld[0] : "No Data Available"}
           </p>
           <p>
             <strong>Currencies: </strong>
