@@ -44,7 +44,7 @@ function CountryList({ countries, query, theme, changeSelected }) {
         </div>
       ) : (
         <div className="no-countries">
-          <h1>No countries found. Try again!</h1>
+          <h2>No countries found. Try again!</h2>
         </div>
       )}
     </>

@@ -5,7 +5,7 @@ function DetailedCountry({ country, changeSelected, theme }) {
   // Example: https://restcountries.com/v3.1/name/Antarctica
 
   const flag = country.flags?.png ? (
-    <img src={country.flags?.png} alt={country.flags?.alt} />
+    <img src={country.flags?.png} alt={`${country.name.common}-flag`} />
   ) : (
     <img src={noImg} alt="no-image" />
   );
@@ -67,12 +67,12 @@ function DetailedCountry({ country, changeSelected, theme }) {
       <button className="back-btn" onClick={(e) => handleBack(e)} theme={theme}>
         &larr; Back
       </button>
-      <section className="detailed-country">
+      <div className="detailed-country">
         {flag}
         <section className="detailed-info">
-          <h1>
+          <h2>
             {country.name.common ? country.name.common : "No Data Available"}
-          </h1>
+          </h2>
           <p>
             <strong>Native Name: </strong>
             {native}
@@ -114,7 +114,7 @@ function DetailedCountry({ country, changeSelected, theme }) {
           </p>
           <div className="border-countries">{borders}</div>
         </section>
-      </section>
+      </div>
     </div>
   );
 }

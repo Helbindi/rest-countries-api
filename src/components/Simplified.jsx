@@ -3,7 +3,7 @@ import noImg from "../assets/no-image.png";
 
 function Simplified({ country, changeSelected, theme }) {
   const flag = country.flags.png ? (
-    <img src={country.flags.png} alt={country.flags.alt} />
+    <img src={country.flags.png} alt={`${country.name.common}-flag`} />
   ) : (
     <img src={noImg} alt="no-image" />
   );
@@ -25,7 +25,7 @@ function Simplified({ country, changeSelected, theme }) {
     >
       <div className="country-flag">{flag}</div>
       <section className="simple-info">
-        <h1>{country.name.common}</h1>
+        <h2>{country.name.common}</h2>
         <p>
           <strong>Population: </strong>
           {country.population.toLocaleString()}
