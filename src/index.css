@@ -1,6 +1,7 @@
 :root {
   font-family: "Nunito Sans", sans-serif;
   line-height: 1.5;
+  scroll-behavior: smooth;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -37,18 +38,105 @@ body {
   background-color: var(--dark-mode-bg);
 }
 
+[theme="light"] {
+  color: var(--light-mode-txt);
+  background: var(--white-clr);
+  box-shadow: 5px 7px 15px var(--light-mode-inputs);
+}
+
+[theme="dark"] {
+  color: var(--white-clr);
+  background: var(--dark-mode-elements);
+}
+
 /* Main CSS */
 .main-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding: 1em;
+  gap: 1em;
 }
 
+/* Nav CSS */
+.nav-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
+  background-color: var(--dark-mode-elements);
+  box-shadow: none;
+}
+
+.nav-header[theme="dark"] {
+  background-color: var(--dark-mode-elements);
+}
+
+.nav-header[theme="light"] {
+  background-color: var(--white-clr);
+}
+
+.header-title {
+  font-size: 1.2rem;
+}
+
+.theme-name {
+  font-weight: 600;
+}
+
+.theme-name::first-letter {
+  text-transform: uppercase;
+}
+
+.toggle-theme {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.toggle-theme img {
+  height: 24px;
+}
+
+/* Filter CSS */
+.filter-queries {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 0 1em;
+  position: relative;
+}
+
+input,
+select {
+  height: 50px;
+  border-radius: 5px;
+  border-style: none;
+
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.search-country {
+  box-shadow: none;
+}
+
+.select-region {
+  width: 50%;
+  box-shadow: none;
+}
+
+/* Countries CSS */
 .countries-grid {
   display: grid;
+  align-items: center;
+  justify-items: center;
   grid-template-columns: 1fr;
-  gap: 1em;
+  gap: 2em;
+  padding: 1em 2em;
+
+  font-size: var(--font-homepage);
 }
 
 /* Simple CSS */
@@ -56,29 +144,90 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 1em;
-  padding: 0 1em 1em 1em;
 
-  min-width: 320px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .country-flag {
   width: 100%;
-  height: 200px;
+  height: 150px;
 }
 .country-flag img {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+.simple-info {
+  padding: 1em 2em;
+}
+
+.no-countries {
+  width: 100%;
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+/* Detailed CSS */
+.detailed-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+
+  padding-bottom: 5em;
+  font-size: var(--font-detailed);
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  left: 5%;
+
+  cursor: pointer;
+  border-style: none;
+  border-radius: 1em;
+
+  font-weight: 600;
+  padding: 1em 2em;
+}
+
+.detailed-country {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  margin-top: 100px;
+}
+
+.border-countries {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.border {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0;
+}
+
+.detailed-info h1 {
+  font-size: 1.5rem;
 }
 
 @media screen and (min-width: 768px) {
   body {
     display: flex;
     justify-content: center;
+    position: relative;
   }
   .main-container {
-    width: 100vh;
-    max-width: 1200px;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
@@ -86,8 +235,59 @@ body {
     align-items: center;
   }
 
+  .nav-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .filter-queries {
+    margin-top: 70px;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .search-country {
+    width: 40%;
+  }
+
+  .select-region {
+    width: 200px;
+  }
+
+  .no-countries {
+    font-size: initial;
+  }
+
   .countries-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .country-simple {
+    width: 300px;
+  }
+
+  /* Detailed CSS */
+  .detailed-container {
+    min-height: 100vh;
+    width: 100vh;
+    margin-top: 5em;
+  }
+  .detailed-country {
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 100px;
+  }
+
+  .detailed-country img {
+    height: 200px;
+  }
+}
+
+@media screen and (min-width: 1350px) {
+  .countries-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

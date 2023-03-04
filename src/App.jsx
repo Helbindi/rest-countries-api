@@ -1,57 +1,148 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./index.css";
-import Simplified from "./components/Simplified";
+import CountryList from "./components/CountryList";
+import DetailedCountry from "./components/DetailedCountry";
+import black from "./assets/black-moon.png";
+import white from "./assets/white-moon.png";
 
 const baseURL = "https://restcountries.com/v3.1/all";
 
 function App() {
   const [data, setData] = useState([]);
-  const [isLightMode, setIsLightMode] = useState(true);
-
-  const theme = isLightMode ? "light-mode" : "dark-mode";
+  const [theme, setTheme] = useState("dark");
+  const [query, setQuery] = useState({ search: "", region: "all" });
+  const [selectedCountry, setSelectedCountry] = useState({});
 
   // Grab data from API: https://restcountries.com/
   async function fetchAPI(url) {
     const response = await axios.get(url);
-    console.log(response);
-    setData(response.data);
+    const sorted = response.data.sort((a, b) => {
+      const nameA = a.name.common.toLowerCase();
+      const nameB = b.name.common.toLowerCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+
+      return 0;
+    });
+    setData(sorted);
+  }
+
+  function toggleTheme(e) {
+    e.preventDefault();
+    if (theme === "dark") {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  }
+
+  function handleSearch(e) {
+    e.preventDefault();
+    const value = e.target.value;
+    setQuery((prev) => {
+      return { ...prev, search: value };
+    });
+  }
+
+  function handleRegion(e) {
+    e.preventDefault();
+    const value = e.target.value;
+    setQuery((prev) => {
+      return { ...prev, region: value };
+    });
+  }
+
+  function changeSelected(id) {
+    if (id) {
+      const selected = data.filter((country) => {
+        return country.cca3 === id;
+      });
+      setSelectedCountry(selected[0]);
+    } else {
+      setSelectedCountry({});
+    }
   }
 
   useEffect(() => {
     fetchAPI(baseURL);
   }, []);
 
-  const some = data.slice(0, 9);
-
-  function toggleTheme(e) {
-    e.preventDefault();
-    if (isLightMode) {
-      setIsLightMode(false);
-    } else {
-      setIsLightMode(true);
-    }
-  }
-
   useEffect(() => {
-    console.log("isLightMode", isLightMode);
-    if (isLightMode) {
-      document.body.classList.remove("dark-mode");
-      document.body.classList.add("light-mode");
+    if (theme === "dark") {
+      document.body.classList.add(`${theme}-mode`);
+      document.body.classList.remove(`light-mode`);
     } else {
-      document.body.classList.remove("light-mode");
-      document.body.classList.add("dark-mode");
+      document.body.classList.add(`${theme}-mode`);
+      document.body.classList.remove(`dark-mode`);
     }
-  }, [isLightMode]);
+  }, [theme]);
 
   return (
     <main className="main-container">
-      <button onClick={toggleTheme}>Toggle</button>
-      <div className="countries-grid">
-        {some.map((country) => (
-          <Simplified country={country} key={country.fifa} />
-        ))}
+      <div className="nav-header" theme={theme}>
+        <h1 className="header-title">Where in the world?</h1>
+        <div className="toggle-theme" onClick={toggleTheme}>
+          {theme === "dark" ? (
+            <img src={white} alt="dark-mode" />
+          ) : (
+            <img src={black} alt="light-mode" />
+          )}
+          <p className="theme-name">{theme} Mode</p>
+        </div>
       </div>
+
+      {Object.keys(selectedCountry).length > 0 ? (
+        <DetailedCountry
+          country={selectedCountry}
+          changeSelected={changeSelected}
+          theme={theme}
+        />
+      ) : (
+        <>
+          {/* Filter Queries */}
+          <div className="filter-queries">
+            <input
+              theme={theme}
+              className="search-country"
+              type="search"
+              name="search"
+              id="country-search"
+              placeholder="Search for a country..."
+              value={query.search}
+              onChange={(e) => handleSearch(e)}
+            />
+
+            <select
+              theme={theme}
+              className="select-region"
+              name="regions"
+              id="region"
+              value={query.region}
+              onChange={(e) => handleRegion(e)}
+            >
+              <option value="all">All</option>
+              <option value="africa">Africa</option>
+              <option value="americas">Americas</option>
+              <option value="asia">Asia</option>
+              <option value="europe">Europe</option>
+              <option value="oceania">Oceania</option>
+            </select>
+          </div>
+
+          {/* Display Countries */}
+          <CountryList
+            countries={data}
+            theme={theme}
+            query={query}
+            changeSelected={changeSelected}
+          />
+        </>
+      )}
     </main>
   );
 }
