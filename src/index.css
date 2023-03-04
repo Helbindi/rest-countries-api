@@ -83,10 +83,6 @@ body {
   font-weight: 600;
 }
 
-.theme-name::first-letter {
-  text-transform: uppercase;
-}
-
 .toggle-theme {
   display: flex;
   align-items: center;

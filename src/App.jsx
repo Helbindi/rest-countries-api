@@ -88,11 +88,16 @@ function App() {
         <h1 className="header-title">Where in the world?</h1>
         <div className="toggle-theme" onClick={toggleTheme}>
           {theme === "dark" ? (
-            <img src={white} alt="dark-mode" />
+            <>
+              <img src={white} alt="light-mode" />
+              <p className="theme-name">Light Mode</p>
+            </>
           ) : (
-            <img src={black} alt="light-mode" />
+            <>
+              <img src={black} alt="dark-mode" />
+              <p className="theme-name">Dark Mode</p>
+            </>
           )}
-          <p className="theme-name">{theme} Mode</p>
         </div>
       </div>
 
