@@ -60,5 +60,5 @@ The main learning goal of this project was retrieving and manage the data acquir
 
 ## Author
 
-- Website - [https://my-projects-site.vercel.app/]()
+- Website - [https://my-projects-site.vercel.app/](https://my-projects-site.vercel.app/)
 - Frontend Mentor - [@Helbindi](https://www.frontendmentor.io/profile/Helbindi)
