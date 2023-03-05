@@ -10,7 +10,9 @@ const baseURL = "https://restcountries.com/v3.1/all";
 
 function App() {
   const [data, setData] = useState([]);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"
+  );
   const [query, setQuery] = useState({ search: "", region: "all" });
   const [selectedCountry, setSelectedCountry] = useState({});
 
@@ -73,12 +75,18 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (!localStorage.getItem("theme")) {
+      localStorage.setItem("theme", "dark");
+    }
+
     if (theme === "dark") {
       document.body.classList.add(`${theme}-mode`);
       document.body.classList.remove(`light-mode`);
+      localStorage.setItem("theme", "dark");
     } else {
       document.body.classList.add(`${theme}-mode`);
       document.body.classList.remove(`dark-mode`);
+      localStorage.setItem("theme", "light");
     }
   }, [theme]);
 

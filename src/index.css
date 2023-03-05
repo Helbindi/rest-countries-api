@@ -64,16 +64,7 @@ body {
   align-items: center;
   justify-content: space-around;
 
-  background-color: var(--dark-mode-elements);
   box-shadow: none;
-}
-
-.nav-header[theme="dark"] {
-  background-color: var(--dark-mode-elements);
-}
-
-.nav-header[theme="light"] {
-  background-color: var(--white-clr);
 }
 
 .header-title {
