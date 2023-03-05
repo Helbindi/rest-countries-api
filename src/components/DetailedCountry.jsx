@@ -32,14 +32,12 @@ function DetailedCountry({ country, changeSelected, theme }) {
 
   const borders = country.borders ? (
     country.borders?.map((b) => (
-      <p className="border" onClick={(e) => handleChange(e)} theme={theme}>
+      <p className={`border ${theme}`} onClick={(e) => handleChange(e)}>
         {b}
       </p>
     ))
   ) : (
-    <p className="border" theme={theme}>
-      None
-    </p>
+    <p className={`border ${theme}`}>None</p>
   );
 
   const nativeNames =
@@ -64,7 +62,7 @@ function DetailedCountry({ country, changeSelected, theme }) {
   }, []);
   return (
     <div className="detailed-container">
-      <button className="back-btn" onClick={(e) => handleBack(e)} theme={theme}>
+      <button className={`back-btn ${theme}`} onClick={(e) => handleBack(e)}>
         &larr; Back
       </button>
       <div className="detailed-country">

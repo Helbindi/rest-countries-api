@@ -18,11 +18,7 @@ function Simplified({ country, changeSelected, theme }) {
     }
   }
   return (
-    <div
-      className="country-simple"
-      onClick={(e) => handleSelect(e)}
-      theme={theme}
-    >
+    <div className={`country-simple ${theme}`} onClick={(e) => handleSelect(e)}>
       <div className="country-flag">{flag}</div>
       <section className="simple-info">
         <h2>{country.name.common}</h2>

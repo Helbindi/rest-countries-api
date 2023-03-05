@@ -38,13 +38,14 @@ body {
   background-color: var(--dark-mode-bg);
 }
 
-[theme="light"] {
+/* All elements with class attributes containing the word 'light' or 'dark' */
+[class~="light"] {
   color: var(--light-mode-txt);
   background: var(--white-clr);
   box-shadow: 5px 7px 15px var(--light-mode-inputs);
 }
 
-[theme="dark"] {
+[class~="dark"] {
   color: var(--white-clr);
   background: var(--dark-mode-elements);
 }

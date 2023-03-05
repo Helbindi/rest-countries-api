@@ -84,7 +84,7 @@ function App() {
 
   return (
     <main className="main-container">
-      <div className="nav-header" theme={theme}>
+      <div className={`nav-header ${theme}`}>
         <h1 className="header-title">Where in the world?</h1>
         <div className="toggle-theme" onClick={toggleTheme}>
           {theme === "dark" ? (
@@ -112,8 +112,7 @@ function App() {
           {/* Filter Queries */}
           <div className="filter-queries">
             <input
-              theme={theme}
-              className="search-country"
+              className={`search-country ${theme}`}
               type="search"
               name="search"
               id="country-search"
@@ -123,8 +122,7 @@ function App() {
             />
 
             <select
-              theme={theme}
-              className="select-region"
+              className={`select-region ${theme}`}
               name="regions"
               id="region"
               value={query.region}
